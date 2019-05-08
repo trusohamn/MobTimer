@@ -1,10 +1,14 @@
-const tpp = 5 * 60 * 1000 ;
+const minute = 60 * 1000;
+const tpp = minute * 5;  //time per person
 let people = [
     //'Marta_lightgreen',
     'Camilla_lightblue',
     'Peter_purple',
     'Poyan_pink'
 ];
+
+const element = document.getElementById('name');
+const buttons = document.getElementById('buttons');
 
 /**
  * Shuffles array in place. ES6 version
@@ -18,26 +22,38 @@ function shuffle(a) {
     return a;
 }
 
-const element = document.getElementById('name');
 function start(counter) {
     console.log(element);
     if (counter < people.length) {
-        let person_color = people[counter];
-        let person = person_color.split('_')[0];
-        let color = person_color.split('_')[1];
+        const person_color = people[counter].split('_');
+        const person = person_color[0];
+        const color = person_color[1];
         element.innerHTML = person;
         document.body.style.background = color;
-        setTimeout(function () {
+        setTimeout(() => {
             counter++;
             start(counter);
         }, tpp);
     } else {
         element.innerHTML = 'Time for the break!!';
         document.body.style.background = 'white';
+        buttons.style.display = 'block';
     }
 }
 
-people = shuffle(people);
-console.log(people);
-start(0);
+function startANewRound() {
+    people = shuffle(people);
+    console.log(people);
+    buttons.style.display = 'none';
+    start(0);
+}
 
+buttons.addEventListener('click', e => {
+    element.innerHTML = e.target.value + ' minutes break';
+    setTimeout(() => {
+        alert('The break is over!');
+        startANewRound();
+    }, minute*e.target.value);
+
+})
+startANewRound();
