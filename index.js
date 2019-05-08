@@ -1,4 +1,4 @@
-const tpp = 5 * 60 * 1000 ;
+const tpp = 5 * 60;
 let people = [
     'Marta_green',
     'Camilla_blue',
@@ -18,22 +18,26 @@ function shuffle(a) {
     return a;
 }
 
+const element = document.getElementById('name');
 function start(counter) {
-    const element = document.getElementById('name');
     console.log(element);
     if (counter < people.length) {
         let person_color = people[counter];
         let person = person_color.split('_')[0];
         let color = person_color.split('_')[1];
         element.innerHTML = person;
-        element.style.background = color;
+        document.body.style.background = color;
         setTimeout(function () {
             counter++;
             start(counter);
         }, tpp);
-    }
+    } else {
+        element.innerHTML = 'Time for the break!!';
+        document.body.style.background = 'white';
+    }ß
 }
 
 people = shuffle(people);
 console.log(people);
 start(0);
+
