@@ -1,4 +1,4 @@
-const tpp = 5 * 60 ;
+const tpp = 5 * 60 * 1000 ;
 let people = [
     //'Marta_lightgreen',
     'Camilla_lightblue',
