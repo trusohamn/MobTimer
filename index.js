@@ -1,7 +1,7 @@
-const tpp = 5 * 60;
+const tpp = 5 * 60 ;
 let people = [
-    'Marta_green',
-    'Camilla_blue',
+    //'Marta_lightgreen',
+    'Camilla_lightblue',
     'Peter_purple',
     'Poyan_pink'
 ];
@@ -34,7 +34,7 @@ function start(counter) {
     } else {
         element.innerHTML = 'Time for the break!!';
         document.body.style.background = 'white';
-    }ß
+    }
 }
 
 people = shuffle(people);
