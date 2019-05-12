@@ -18,11 +18,18 @@
             background: rgba(240, 255, 240, 0.687);
             box-shadow: inset 0px 0px 20px rgba(34, 58, 42, 0.735);
         }
+        #buttons {
+            display : none;
+        }
         button {
             padding: 5px;
             margin: -2px 2px 2px 2px;
             font-size: 2em;
             border-radius: 20%;
+        }
+
+        #start {
+            margin : 0 auto;
         }
     </style>
 </head>
@@ -30,6 +37,7 @@
 <body>
     <div id='main'>
         <h1 id='name'></h1>
+        <button id="start">START!</button>
         <div id='buttons'>
             <button value=5>5min</button>
             <button value=10>10min</button>
@@ -37,8 +45,8 @@
             <button value=60>1h</button>
         </div>
     </div>
-
-
+    <audio id="nextPerson" src="audio/nextPerson.mp3"></audio>
+    <audio id="endBreak" src="audio/endBreak.mp3"></audio>
     <script src='index.js'></script>
 </body>
 

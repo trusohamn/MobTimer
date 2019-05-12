@@ -1,7 +1,7 @@
 const minute = 60 * 1000;
 const tpp = minute * 5;  //time per person
 let people = [
-    //'Marta_lightgreen',
+    'Marta_lightgreen',
     'Camilla_lightblue',
     'Peter_purple',
     'Poyan_pink'
@@ -9,15 +9,16 @@ let people = [
 
 const element = document.getElementById('name');
 const buttons = document.getElementById('buttons');
+const nexPersonSound = document.getElementById("nextPerson");
+const endBreakSound = document.getElementById("endBreak");
 
-/**
- * Shuffles array in place. ES6 version
- * @param {Array} a items An array containing the items.
- */
+const startButton = document.getElementById("start");
+
+
 function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
+    for (let i = 0; i < a.length; i++) {
+        const j = Math.floor(Math.random() * a.length); //random index j
+        [a[i], a[j]] = [a[j], a[i]]; //switch
     }
     return a;
 }
@@ -26,12 +27,15 @@ function start(counter) {
     console.log(element);
     if (counter < people.length) {
         const person_color = people[counter].split('_');
-        const person = person_color[0];
+        let person = person_color[0];
         const color = person_color[1];
         element.innerHTML = person;
         document.body.style.background = color;
+        document.body.style.backgroundImage = `url(img/${person.toLowerCase()}.jpg)`;
+        console.log(`url(img/${person}.jpg)`);
         setTimeout(() => {
             counter++;
+            nexPersonSound.play();
             start(counter);
         }, tpp);
     } else {
@@ -50,10 +54,18 @@ function startANewRound() {
 
 buttons.addEventListener('click', e => {
     element.innerHTML = e.target.value + ' minutes break';
+    buttons.style.display = 'none';
     setTimeout(() => {
-        alert('The break is over!');
-        startANewRound();
-    }, minute*e.target.value);
+        endBreakSound.play();
+        element.innerHTML = 'Break is over!!';
+        startButton.style.display = 'block';
+    }, minute * e.target.value);
 
 })
-startANewRound();
+
+startButton.addEventListener('click', e => {
+    startButton.style.display = 'none';
+    startANewRound();
+})
+
+
