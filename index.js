@@ -30,6 +30,7 @@ function start(counter) {
         let person = person_color[0];
         const color = person_color[1];
         element.innerHTML = person;
+        document.title = person;
         document.body.style.background = color;
         document.body.style.backgroundImage = `url(img/${person.toLowerCase()}.jpg)`;
         console.log(`url(img/${person}.jpg)`);
@@ -40,6 +41,7 @@ function start(counter) {
         }, tpp);
     } else {
         element.innerHTML = 'Time for the break!!';
+        document.title = 'Break!';
         document.body.style.background = 'white';
         buttons.style.display = 'block';
     }
@@ -58,6 +60,7 @@ buttons.addEventListener('click', e => {
     setTimeout(() => {
         endBreakSound.play();
         element.innerHTML = 'Break is over!!';
+        document.body.style.background = 'red';
         startButton.style.display = 'block';
     }, minute * e.target.value);
 
@@ -65,6 +68,7 @@ buttons.addEventListener('click', e => {
 
 startButton.addEventListener('click', e => {
     startButton.style.display = 'none';
+    document.body.style.background = 'white';
     startANewRound();
 })
 
